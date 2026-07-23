@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.io
+    repoURL: https://traefik.github.io/charts
     chart: traefik
     targetRevision: 34.0.0
     helm:
@@ -15,9 +15,16 @@ spec:
           replicas: 1
         service:
           type: LoadBalancer
+        ports:
+          web:
+            expose: true
+            port: 80
+          websecure:
+            expose: true
+            port: 443
   destination:
-    server: https://default.svc
-    namespace: kube-system  # <-- Cambiamos aquí para usar el namespace de red nativo
+    server: https://kubernetes.default.svc
+    namespace: kube-system
   syncPolicy:
     automated:
       prune: true
