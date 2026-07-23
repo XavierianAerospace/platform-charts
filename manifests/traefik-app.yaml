@@ -16,8 +16,8 @@ spec:
         service:
           type: LoadBalancer
   destination:
-    server: https://kubernetes.default.svc
-    namespace: infrastructure
+    server: https://default.svc
+    namespace: kube-system  # <-- Cambiamos aquí para usar el namespace de red nativo
   syncPolicy:
     automated:
       prune: true
